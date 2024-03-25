@@ -30,3 +30,8 @@ Labels and selectors are fundamental concepts in Kubernetes that enable flexible
 - Targeting Resources.
 - Monitoring and Observability.
 - Managing Access and Policies.
+
+### What's Deployment in Kubernetes ?
+A deployment is a powerful object in kubernetes that manages the rollout and lifecycle of containerized applications. It provides a declarative approach, allowing you to specify the desired state of your application, and the deployment controller works tirelessly to achieve that state. 
+
+### Difference between Deployment and ReplicaSet ?

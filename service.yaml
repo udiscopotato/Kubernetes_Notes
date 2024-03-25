@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-svc
+spec:
+  selector:
+    tier: frontend
+  ports:
+  - name: nginx-port
+    protocol: TCP
+    port: 80  # Service port
+    targetPort: 80   # OR the name of the port we gave during pod creation in pod-definitionfile
+  type: ClusterIP  # default type 
+
+  # ports:
+  # - name: nginx-port
+  #   protocol: TCP
+  #   port: 80 
+  #   targetPort: 80   
+  # type: NodePort
+  # nodePort: 30030       # this is between 30000–32767
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   labels:
+#     app: FE
+#   name: FE
+# spec:
+#   clusterIP: 10.96.75.104
+#   ports:
+#   - nodePort: 30171
+#     port: 80
+#     protocol: TCP
+#     targetPort: 80
+#   selector:
+#     app: FE
+#   type: NodePort

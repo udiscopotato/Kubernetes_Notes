@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: my-ds
+  namespace: my-ns
+  labels:
+    type: daemon
+spec:
+  selector:
+    matchLabels:
+      tier: middleWare
+  template:
+    metadata:
+      labels:
+        tier: middleWare
+    spec:
+      containers:
+        - name: random
+          image: busybox
+          command: ['echo','Hello There']
+          ports:
+          - containerPort: 8080
+    
