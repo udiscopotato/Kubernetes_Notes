@@ -5,10 +5,16 @@ metadata:
   name: my-pod
   labels:
     tier: frontend
+  annotations:
+    buildversion: '1.02'
 spec:
   containers:
   - name: my-container
     image: nginx:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
     ports:
     - containerPort: 80
       name: nginx-port

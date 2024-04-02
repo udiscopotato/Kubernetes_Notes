@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: my-pod
+  labels:
+    color: red
+spec:
+  containers:
+    - name: web-server
+      image: httpd
+      resources:
+        limits:
+          cpu: "128Mi"
+          memory: "500m"
+      ports:
+        - name: web-port
+          containerPort: 80
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:   # OR preferredDuringSchedulingIgnoredDuringExecution
+        nodeSelectorTerms:
+          - key: size
+            operator: In # OR NotIn Exists DoesNotExist Gt Lt
+            values:
+              - large
+              - medium
+
+              # This will launch this pod on Nodes which values large or medium
+
+  # nodeAffinity:
+  #     requiredDuringSchedulingIgnoredDuringExecution:
+  #       nodeSelector:
+  #         matchExpressions:
+  #         - key: memory
+  #           operator: Gt
+  #           values:
+  #           - "2Gi"

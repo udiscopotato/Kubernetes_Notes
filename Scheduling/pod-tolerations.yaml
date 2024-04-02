@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    kind: frontend
+spec:
+  containers:
+  - name: myapp
+    image: nginx:alpine
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  tolerations:
+    - key: color
+      operator: Equal
+      value: blue
+      effect: NoSchedule

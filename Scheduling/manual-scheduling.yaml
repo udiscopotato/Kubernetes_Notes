@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    type: web
+  annotations:
+    buildversion: '1.02'
+spec:
+  containers:
+  - name: myapp
+    image: nginx:alpine
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  nodeName: node-name
+
+  #                 OR
+
+---
+apiVersion: v1
+kind: Bind
+metadata:
+  name: myapp
+target:
+  apiVersion: v1
+  kind: Node
+  name: node-name
