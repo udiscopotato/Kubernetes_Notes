@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app
+  labels:
+    tier: first
+spec:
+  containers:
+  - name: webapp
+    image: httpd
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+        name: web-port
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - key: size
+            operator: In
+            values: 
+              - large
+  tolerations:
+    - key: color
+      operator: Equal
+      value: red
+      effect: NoSchedule
+
+
+# to do this first taint the node
+# kubectl taint node node01 color=red:NoShedule
